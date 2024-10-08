@@ -51,4 +51,28 @@ public class InstrumentDAO {
             e.printStackTrace();
         }
     }
+
+    public void updateInstrument(Instrument instrument) {
+        try {
+            String sql = "UPDATE instruments SET name = ?, price = ? WHERE id = ?";
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setString(1, instrument.getName());
+            preparedStatement.setDouble(2, instrument.getPrice());
+            preparedStatement.setInt(3, instrument.getId());
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void deleteInstrument(int id) {
+        try {
+            String sql = "DELETE FROM instruments WHERE id = ?";
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            preparedStatement.setInt(1, id);
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 }
